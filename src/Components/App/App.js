@@ -12,7 +12,13 @@ export default class App extends React.Component {
         {name: 'song1', artist: 'artist1', album: 'album1', id: 1}, 
         {name: 'song2', artist: 'artist2', album: 'album2', id: 2}, 
         {name: 'song3', artist: 'artist3', album: 'album3', id: 3}
-      ] 
+      ],
+      playlistName: `Uri's playlist`,
+      playlistTracks: [
+        {name: 'psong1', artist: 'partist1', album: 'palbum1', id: 1}, 
+        {name: 'psong2', artist: 'partist2', album: 'palbum2', id: 2}, 
+        {name: 'psong3', artist: 'partist3', album: 'palbum3', id: 3}
+      ]
     };
   };
 
@@ -24,7 +30,7 @@ export default class App extends React.Component {
           <SearchBar />
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults}/>
-            <Playlist />
+            <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
           </div>
         </div>
       </div>
