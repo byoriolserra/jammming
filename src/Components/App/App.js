@@ -7,6 +7,7 @@ import React from 'react';
 export default class App extends React.Component {
   constructor(props){
     super(props);
+    this.addTrack = this.addTrack.bind(this);
     this.state = { 
       searchResults: [
         {name: 'song1', artist: 'artist1', album: 'album1', id: 1}, 
@@ -15,11 +16,21 @@ export default class App extends React.Component {
       ],
       playlistName: `Uri's playlist`,
       playlistTracks: [
-        {name: 'psong1', artist: 'partist1', album: 'palbum1', id: 1}, 
-        {name: 'psong2', artist: 'partist2', album: 'palbum2', id: 2}, 
-        {name: 'psong3', artist: 'partist3', album: 'palbum3', id: 3}
+        {name: 'psong1', artist: 'partist1', album: 'palbum1', id: 4}, 
+        {name: 'psong2', artist: 'partist2', album: 'palbum2', id: 5}, 
+        {name: 'psong3', artist: 'partist3', album: 'palbum3', id: 6}
       ]
     };
+  };
+
+  addTrack(track){
+    let tracks = this.state.playlistTracks;
+    if(tracks.find(savedTrack => savedTrack.id === track.id)){
+      return;
+    } else {
+      tracks = tracks.push(track);
+      this.setState({ playlistTracks: tracks });
+    }
   };
 
   render(){
@@ -29,7 +40,7 @@ export default class App extends React.Component {
         <div className="App">
           <SearchBar />
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults}/>
+            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
             <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
           </div>
         </div>
