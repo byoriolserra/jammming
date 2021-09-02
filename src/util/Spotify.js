@@ -1,7 +1,7 @@
 
 let accessToken;
 let clientId = '6e50208cd74d4827b579ea9123a815d7';
-let redirectURI = 'http://localhost:3000/';
+let redirectURI = 'https://pedantic-roentgen-04b46e.netlify.app';
 
 const Spotify = {
 
