@@ -14,17 +14,9 @@ export default class App extends React.Component {
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
     this.state = { 
-      searchResults: [
-        {name: 'song1', artist: 'artist1', album: 'album1', id: 1}, 
-        {name: 'song2', artist: 'artist2', album: 'album2', id: 2}, 
-        {name: 'song3', artist: 'artist3', album: 'album3', id: 3}
-      ],
-      playlistName: `Uri's playlist`,
-      playlistTracks: [
-        {name: 'psong1', artist: 'partist1', album: 'palbum1', id: 4}, 
-        {name: 'psong2', artist: 'partist2', album: 'palbum2', id: 5}, 
-        {name: 'psong3', artist: 'partist3', album: 'palbum3', id: 6}
-      ]
+      searchResults: [],
+      playlistName: ``,
+      playlistTracks: []
     };
   };
 
@@ -54,7 +46,9 @@ export default class App extends React.Component {
   };
 
   savePlaylist(){
-    let trackURIs = this.state.playlistTracks.map(track => {return track.uri });
+    const trackURIs = this.state.playlistTracks.map(track => track.uri);
+    Spotify.savePlaylist( this.state.playlistName , trackURIs).then(() =>
+    this.setState({ playlistName: 'New Playlist', playlistTracks: [] }))
   };
 
   search(searchTerm){
