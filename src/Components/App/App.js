@@ -15,7 +15,7 @@ export default class App extends React.Component {
     this.search = this.search.bind(this);
     this.state = { 
       searchResults: [],
-      playlistName: ``,
+      playlistName: `New Playlist`,
       playlistTracks: []
     };
   };
@@ -47,8 +47,10 @@ export default class App extends React.Component {
 
   savePlaylist(){
     const trackURIs = this.state.playlistTracks.map(track => track.uri);
-    Spotify.savePlaylist( this.state.playlistName , trackURIs).then(() =>
-    this.setState({ playlistName: 'New Playlist', playlistTracks: [] }))
+    Spotify.savePlaylist( this.state.playlistName , trackURIs).then(() => {
+      this.setState({ playlistName: 'New Playlist', playlistTracks: [] });
+      document.getElementById('input').value = this.state.playlistName;
+    })
   };
 
   search(searchTerm){
